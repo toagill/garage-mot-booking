@@ -13,6 +13,7 @@ spec:
       labels:
         app: backend
     spec:
+      serviceAccountName: garage-mot-backend
       containers:
         - name: backend
           image: garage-mot-backend:latest
@@ -27,7 +28,11 @@ spec:
                   name: garage-secrets
                   key: database-url
             - name: VEHICLE_API_MODE
-              value: "mock"
+              value: "dvla"
+            - name: AWS_SECRET_NAME
+              value: "garage-mot/dvla"
+            - name: AWS_REGION
+              value: "eu-west-2"
           readinessProbe:
             httpGet:
               path: /health
