@@ -21,8 +21,10 @@ services:
     environment:
       PORT: 4000
       DATABASE_URL: postgres://garage:garagepass@db:5432/garage
-      VEHICLE_API_MODE: mock
-      DVLA_API_KEY: ""
+      VEHICLE_API_MODE: ${VEHICLE_API_MODE:-mock}
+      DVLA_API_KEY: ${DVLA_API_KEY:-}
+      AWS_SECRET_NAME: ${AWS_SECRET_NAME:-}
+      AWS_REGION: ${AWS_REGION:-eu-west-2}
     depends_on:
       db:
         condition: service_healthy
